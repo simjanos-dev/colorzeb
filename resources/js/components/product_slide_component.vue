@@ -9,7 +9,7 @@
                     <div class="product-image-box">
                         <img class="product-image" :src="'/product-image/' + product.image.name + '/' + product.image.color + '/' + product.image.extraImage">
                     </div>
-                    <div class="product-name">{{ index + ', ' + product.name }}</div>
+                    <div class="product-name">{{ product.name }}</div>
                     <div class="product-price-bubble">
                         <div class="bubble-price">{{ product.price }} Ft</div>
                         <div class="bubble-view-text">Tovább</div>
@@ -51,7 +51,7 @@
                     id  : this.$props._products[i].id,
                     name: this.$props._products[i].name,
                     image: JSON.parse(this.$props._products[i].main_image),
-                    price: this.$props._products[i].discount_price ? this.$props._products[i].discount_price : this.$props._products[i].price,
+                    price: this.$props._products[i].discount_price !== 0 ? this.$props._products[i].discount_price : this.$props._products[i].price,
                 };
 
                 this.productBoxes[this.productBoxes.length - 1].products.push(product);
