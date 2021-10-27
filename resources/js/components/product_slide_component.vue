@@ -51,7 +51,7 @@
                     id  : this.$props._products[i].id,
                     name: this.$props._products[i].name,
                     image: JSON.parse(this.$props._products[i].main_image),
-                    price: this.$props._products[i].discount_price !== 0 ? this.$props._products[i].discount_price : this.$props._products[i].price,
+                    price: this.$props._products[i].discount_price != 0 ? this.$props._products[i].discount_price : this.$props._products[i].price,
                 };
 
                 this.productBoxes[this.productBoxes.length - 1].products.push(product);
