@@ -11,6 +11,7 @@ use App\OrderProduct;
 use App\CustomProductParameter;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 use App\Mail\OrderStatus;
 
 class AdminController extends Controller
@@ -264,9 +265,19 @@ class AdminController extends Controller
         $product->main_image = json_encode($product->main_image);
 
         // images
+        $processedImages = Storage::disk('public')->files('product_images/processed/');
         $product->images = new \StdClass;
         $product->images->images = json_decode($data['images']);
         for ($i = 0; $i < count($product->images->images); $i++) {
+            $imageId = explode('_', pathinfo($product->images->images[$i]->name, PATHINFO_FILENAME))[0];
+
+            for ($j = 0; $j < count($processedImages); $j++) {
+                $processedImageId = explode('_', pathinfo($processedImages[$j], PATHINFO_FILENAME))[0];
+                if ($processedImageId == $imageId) {
+                    Storage::disk('public')->delete($processedImages[$j]);
+                }
+            }
+
             unset($product->images->images[$i]->id);
         }
 
@@ -283,6 +294,20 @@ class AdminController extends Controller
 
         // save product
         $product->save();
+
+        // delete images which were not used after upload
+        $processedImages = Storage::disk('public')->files('product_images/processed/');
+        for ($i = 0; $i < count($data['imagesToDelete']); $i++) {
+            $imageId = explode('_', pathinfo($data['imagesToDelete'][$i], PATHINFO_FILENAME))[0];
+            for ($j = 0; $j < count($processedImages); $j++) {
+                $processedImageId = explode('_', pathinfo($processedImages[$j], PATHINFO_FILENAME))[0];
+                if ($processedImageId == $imageId) {
+                    Storage::disk('public')->delete($processedImages[$j]);
+                }
+            }
+
+            Storage::disk('public')->delete('product_images/' . $data['imagesToDelete'][$i]);
+        }
 
         // upload custom parameters
         if (!$newProduct) { 

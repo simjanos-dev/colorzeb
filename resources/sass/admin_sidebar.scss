@@ -1,0 +1,33 @@
+@import 'variables';
+
+#side-panel {
+    padding: 0px;
+    border: 1px solid $border-color;
+    
+    a>button{
+        background-color: $background;
+        color: $font-color;
+        text-align: center;
+        border: none;
+        display: block;
+        width: 100%;
+
+        &:hover, &.active {
+            text-decoration: none;
+            color: $white;
+            background-color: $first;
+        }
+    }
+
+    div {
+        text-align: center;
+        border: none;
+        display: block;
+        width: 100%;
+        background-color: $first;
+        color: $white;
+        height: 30px;
+        line-height: 32px;
+        font-size: 17px;
+    }
+}

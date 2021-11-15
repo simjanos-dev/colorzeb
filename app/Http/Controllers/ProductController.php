@@ -141,8 +141,7 @@ class ProductController extends Controller
         return redirect($url);
     }
 
-    public function displayProductDetails(Request $request, $id)
-    {
+    public function displayProductDetails(Request $request, $id) {
         $product = Product::where('id', $id)->first();
         $customParameters = CustomProductParameter::getByProductId($id);
         
@@ -152,17 +151,24 @@ class ProductController extends Controller
         ]);
     }
 
-    public function getProductImage($fileName, $color = '000000', $extraPicture = '') {
-        $coloredImage = Image::make(Storage::disk('public')->path('product_images/' . $fileName));
+    public function getProductImage($fileName, $color = '000000', $extraPicture = '') {        
+        $processedFileName = 'product_images/processed/' . pathinfo($fileName, PATHINFO_FILENAME) . '_' . $color . '_' . $extraPicture . '.' . pathinfo($fileName, PATHINFO_EXTENSION);
         
-        if ($color !== '000000') {
-            $coloredImage->colorize(intval(hexdec(substr($color, 0, 2)) / 255 * 100), intval(hexdec(substr($color, 2, 2)) / 255 * 100), intval(hexdec(substr($color, 4, 2)) / 255 * 100));
-        }
-        
-        $coloredImage->insert(Storage::disk('public')->path('extra_images/watermark.png'));
-        
-        if ($extraPicture) {
-            $coloredImage->insert(Storage::disk('public')->path('extra_images/' . $extraPicture));
+        if (!Storage::disk('public')->exists($processedFileName)) {
+            $coloredImage = Image::make(Storage::disk('public')->path('product_images/' . $fileName));
+            if ($color !== '000000') {
+                $coloredImage->colorize(intval(hexdec(substr($color, 0, 2)) / 255 * 100), intval(hexdec(substr($color, 2, 2)) / 255 * 100), intval(hexdec(substr($color, 4, 2)) / 255 * 100));
+            }
+            
+            $coloredImage->insert(Storage::disk('public')->path('extra_images/watermark.png'));
+            
+            if ($extraPicture) {
+                $coloredImage->insert(Storage::disk('public')->path('extra_images/' . $extraPicture . '.png'));
+            }
+
+            $coloredImage->save(Storage::disk('public')->path($processedFileName));
+        } else {
+            $coloredImage = Image::make(Storage::disk('public')->path($processedFileName));
         }
 
         return $coloredImage->response('png');
@@ -172,7 +178,7 @@ class ProductController extends Controller
         if (!$request->has('images')) {
             return;
         }
-
+        
         // get last image id
         $imageFiles = Storage::disk('public')->files('product_images/');
         $lastImageId = -1;
@@ -184,13 +190,12 @@ class ProductController extends Controller
             }
         }
 
-
         $images = $request->images;
         $finalImageNames = [];
         foreach ($images as $image) {
             $lastImageId ++;
-            $image->move(storage_path('/app/public/product_images'), $lastImageId . '_' . $image->getClientOriginalName());
-            array_push($finalImageNames, $lastImageId . '_' . $image->getClientOriginalName());
+            $image->move(storage_path('/app/public/product_images'), $lastImageId . '.' . pathinfo($image->getClientOriginalName(), PATHINFO_EXTENSION));
+            array_push($finalImageNames, $lastImageId . '.' . pathinfo($image->getClientOriginalName(), PATHINFO_EXTENSION));
         }
 
         return json_encode($finalImageNames);

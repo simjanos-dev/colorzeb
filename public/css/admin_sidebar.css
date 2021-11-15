@@ -1,0 +1,33 @@
+#side-panel {
+  padding: 0px;
+  border: 1px solid #e6e6e6;
+}
+
+#side-panel a > button {
+  background-color: whitesmoke;
+  color: #000000;
+  text-align: center;
+  border: none;
+  display: block;
+  width: 100%;
+}
+
+#side-panel a > button:hover,
+#side-panel a > button.active {
+  text-decoration: none;
+  color: white;
+  background-color: #d21e49;
+}
+
+#side-panel div {
+  text-align: center;
+  border: none;
+  display: block;
+  width: 100%;
+  background-color: #d21e49;
+  color: white;
+  height: 30px;
+  line-height: 32px;
+  font-size: 17px;
+}
+

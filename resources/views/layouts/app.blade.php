@@ -82,6 +82,7 @@
                                         <a class="dropdown-item" href="/contact"><i class="fa fa-envelope"></i> Kapcsolat</a>
                                     </div>
                                 </li>
+                                <nav-product-search-component></nav-product-search-component>
                             @else 
 
                                 <li class="nav-item">

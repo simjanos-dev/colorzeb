@@ -20,6 +20,7 @@
     "/css/user_orders.css": "/css/user_orders.css",
     "/css/user_data.css": "/css/user_data.css",
     "/css/user_order_details.css": "/css/user_order_details.css",
+    "/css/admin_sidebar.css": "/css/admin_sidebar.css",
     "/css/admin_orders.css": "/css/admin_orders.css",
     "/css/admin_order_details.css": "/css/admin_order_details.css",
     "/css/admin_search_products.css": "/css/admin_search_products.css"

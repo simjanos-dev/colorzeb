@@ -53,7 +53,7 @@
                                         <option v-for="(imageName, imageNameIndex) in imageNames" :key="imageNameIndex" :value="imageName">{{ imageName }}</option>
                                     </select>
                                 </td>
-                                <td><input class="form-control blue" type="text" v-model="image.color" placeholder="szín" v-on:change="imageColorPairsChanged"></td>
+                                <td><input class="form-control blue" type="text" v-model.lazy="image.color" placeholder="szín" v-on:change="imageColorPairsChanged"></td>
                                 <td>
                                     <select class="form-control blue" v-model="image.extraImage" v-on:change="imageColorPairsChanged">
                                         <option v-for="(currentExtraImage, index) in extraImageList" :key="index" :value="currentExtraImage">{{ currentExtraImage.name }}</option>
@@ -275,7 +275,7 @@
                     },
                     {
                         name: 'Villanykapcsoló',
-                        file: 'light-switch.png',
+                        file: 'light-switch',
                     },
                 ],
                 selectedUploadImages: [],
@@ -583,6 +583,19 @@
                 product.parameterSettings = JSON.stringify(this.parameterSettings);
                 product.active = this.active;
 
+                product.imagesToDelete = [];
+                for (var i = 0; i < this.imageNames.length; i++) {
+                    var toDelete = true;
+                    for (var j = 0; j < this.imageColorPairs.length; j++) {
+                        if (this.imageNames[i] == this.imageColorPairs[j].name) {
+                            toDelete = false;
+                        }
+                    }
+
+                    if (toDelete) {
+                        product.imagesToDelete.push(this.imageNames[i]);
+                    }
+                }
 
                 axios.post('/admin/modify-product', product).then(res => {
                     if (this.id == -1) {
@@ -592,7 +605,14 @@
                     if (this.successText.length) {
                         this.successText += '<br>';
                     }
-                    this.successText += res.request.responseText;
+
+                    this.successText = res.request.responseText;
+
+                    for (var i = this.imageNames.length - 1; i >= 0; i--) {
+                        if (product.imagesToDelete.indexOf(this.imageNames[i]) !== -1) {
+                            this.imageNames.splice(i, 1);
+                        }
+                    }
                 });
             }
         },

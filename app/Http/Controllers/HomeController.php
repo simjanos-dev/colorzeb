@@ -15,12 +15,10 @@ use App\OrderStatusEmail;
 
 class HomeController extends Controller
 {
-    public function __construct()
-    {
+    public function __construct() {
     }
 
-    public function index()
-    {
+    public function index() {
         $products = Product::orderBy('created_at', 'DESC')->limit(40)->get();
         return view('home', [
             'newProducts' => $products,

@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('head')
+    <link href="{{ asset('css/admin_sidebar.css') }}" rel="stylesheet">
     <link href="{{ asset('css/admin_search_products.css') }}" rel="stylesheet">
 @endsection
 
