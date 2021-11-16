@@ -167,11 +167,12 @@ class ProductController extends Controller
             }
 
             $coloredImage->save(Storage::disk('public')->path($processedFileName));
+            return $coloredImage->response('png');
         } else {
-            $coloredImage = Image::make(Storage::disk('public')->path($processedFileName));
+            return response()->file(Storage::disk('public')->path($processedFileName));
         }
 
-        return $coloredImage->response('png');
+        
     }
 
     public function uploadProductImages(Request $request) {
