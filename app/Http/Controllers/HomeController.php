@@ -25,6 +25,10 @@ class HomeController extends Controller
         ]);
     }
 
+    public function aszf() {
+        return view('aszf');
+    }
+
     public function contact() {
         return view('contact');
     }

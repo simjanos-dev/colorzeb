@@ -220,7 +220,7 @@
                     <a href="#" class="footer-link">Szállítás</a>
                 </li>
                 <li class="footer-item">
-                    <a href="#" class="footer-link">ÁSZF</a>
+                    <a href="/aszf" class="footer-link">ÁSZF</a>
                 </li>
                 <li class="footer-item right">
                     <a target="_blank" class="footer-image-link" href="https://www.instagram.com/colorzeb_design/"><i class="fa fa-instagram"></i></a>

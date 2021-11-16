@@ -32,6 +32,7 @@ Route::get('/product/{id}', 'ProductController@displayProductDetails')->name('di
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/about', 'HomeController@aboutColorzeb')->name('colorzeb');
+Route::get('/aszf', 'HomeController@aszf')->name('aszf');
 Route::get('/contact', 'HomeController@contact')->name('contact');
 Route::post('/send-contact-message', 'HomeController@sendContactMessage')->name('send-contact-message');
 Route::get('/user/orders/{page?}', 'HomeController@userOrders')->name('user-orders');
