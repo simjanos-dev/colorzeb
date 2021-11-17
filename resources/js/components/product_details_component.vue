@@ -13,7 +13,8 @@
                 <div id="product-small-image-slide">
                     <div id="product-small-image-slide-overflow">
                         <div class="product-small-image" v-for="(image, index) in images" :key="index" v-if="image.visible">
-                            <img :src="'/product-image/' + image.name + '/' + image.color + '/' + image.extraImage.file" v-on:click="selectImage('/product-image/' + image.name + '/' + image.color + '/' + image.extraImage.file)">
+                            <img :src="'/images/processed_images/' + image.name.split('.').slice(0, -1).join('.').split('_')[0] + '_' + image.color + '_' + image.extraImage.file + '.' + image.name.split('.').pop()"
+                            v-on:click="selectImage('/images/processed_images/' + image.name.split('.').slice(0, -1).join('.').split('_')[0] + '_' + image.color + '_' + image.extraImage.file + '.' + image.name.split('.').pop())">
                         </div>
                     </div>
                 </div>
@@ -81,7 +82,7 @@
         data: function () {
             return {
                 images: this.$props._imageList,
-                currentImage: '/product-image/' + this.$props._mainImage.name + '/' + this.$props._mainImage.color + '/' + this.$props._mainImage.extraImage,
+                currentImage: '/images/processed_images/' + this.$props._mainImage.name.split('.').slice(0, -1).join('.').split('_')[0] + '_' + this.$props._mainImage.color + '_' + this.$props._mainImage.extraImage + '.' + this.$props._mainImage.name.split('.').pop(),
                 firstImageIndex: 0,
                 leftArrowEnabled: false,
                 rightArrowEnabled: false,
@@ -106,7 +107,6 @@
 
         methods: {
             customParameterChanged: function() {
-
                 for (var i = 1; i < this.parameterSettings.length; i++) {
                     if (this.parameterSettings[i].param1 !== '' && this.parameterSettings[i].param1 !== this.selectedParameters[0] && 
                         this.customParameters[0].type == 'select') {

@@ -154,25 +154,18 @@ class ProductController extends Controller
     public function getProductImage($fileName, $color = '000000', $extraPicture = '') {        
         $processedFileName = 'product_images/processed/' . pathinfo($fileName, PATHINFO_FILENAME) . '_' . $color . '_' . $extraPicture . '.' . pathinfo($fileName, PATHINFO_EXTENSION);
         
-        if (!Storage::disk('public')->exists($processedFileName)) {
-            $coloredImage = Image::make(Storage::disk('public')->path('product_images/' . $fileName));
-            if ($color !== '000000') {
-                $coloredImage->colorize(intval(hexdec(substr($color, 0, 2)) / 255 * 100), intval(hexdec(substr($color, 2, 2)) / 255 * 100), intval(hexdec(substr($color, 4, 2)) / 255 * 100));
-            }
-            
-            $coloredImage->insert(Storage::disk('public')->path('extra_images/watermark.png'));
-            
-            if ($extraPicture) {
-                $coloredImage->insert(Storage::disk('public')->path('extra_images/' . $extraPicture . '.png'));
-            }
-
-            $coloredImage->save(Storage::disk('public')->path($processedFileName));
-            return $coloredImage->response('png');
-        } else {
-            return response()->file(Storage::disk('public')->path($processedFileName));
+        $coloredImage = Image::make(Storage::disk('public')->path('product_images/' . $fileName));
+        if ($color !== '000000') {
+            $coloredImage->colorize(intval(hexdec(substr($color, 0, 2)) / 255 * 100), intval(hexdec(substr($color, 2, 2)) / 255 * 100), intval(hexdec(substr($color, 4, 2)) / 255 * 100));
+        }
+        
+        $coloredImage->insert(Storage::disk('public')->path('extra_images/watermark.png'));
+        
+        if ($extraPicture) {
+            $coloredImage->insert(Storage::disk('public')->path('extra_images/' . $extraPicture . '.png'));
         }
 
-        
+        return $coloredImage->response('png');
     }
 
     public function uploadProductImages(Request $request) {

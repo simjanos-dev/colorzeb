@@ -31,7 +31,10 @@
                                 @if ($product->discount > 0)
                                     <div class="product-box-discount"><i class="fa fa-tags"></i> {{ $product->discount }}%</div>
                                 @endif
-                                <img src="/product-image/{{ json_decode($product->main_image)->name }}/{{ json_decode($product->main_image)->color }}/{{ json_decode($product->main_image)->extraImage }}">
+                                @php
+                                    $mainImage = json_decode($product->main_image);
+                                @endphp
+                                <img src="/images/processed_images/{{ explode('_', pathinfo($mainImage->name, PATHINFO_FILENAME))[0] }}_{{ $mainImage->color }}_{{ $mainImage->extraImage }}.{{ pathinfo($mainImage->name, PATHINFO_EXTENSION) }}">
                             </div>
                             <div class="product-name">{{ $product->name }}</div>
                             <div class="product-bottom-box">

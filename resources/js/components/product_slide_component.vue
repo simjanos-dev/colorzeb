@@ -7,7 +7,7 @@
             <div class="product" v-for="(product, index2) in productBox.products" :key="index2">
                 <a :href="'/product/' + product.id">
                     <div class="product-image-box">
-                        <img class="product-image" :src="'/product-image/' + product.image.name + '/' + product.image.color + '/' + product.image.extraImage">
+                        <img class="product-image" :src="'/images/processed_images/' + product.image.name.split('.').slice(0, -1).join('.').split('_')[0] + '_' + product.image.color + '_' + product.image.extraImage + '.' + product.image.name.split('.').pop()">
                     </div>
                     <div class="product-name">{{ product.name }}</div>
                     <div class="product-price-bubble">

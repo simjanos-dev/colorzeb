@@ -86,7 +86,7 @@ class Cart extends Model
                 }
 
                 if ($parameterSettings[$j]->image !== '') {
-                    $cart[$i]->image = '/product-image/' . $parameterSettings[$j]->image->name . '/' . $parameterSettings[$j]->image->color . '/' . $parameterSettings[$j]->image->extraImage->file;
+                    $cart[$i]->image = '/images/processed_images/' . explode('_', pathinfo($parameterSettings[$j]->image->name, PATHINFO_FILENAME))[0] . '_' . $parameterSettings[$j]->image->color . '_' . $parameterSettings[$j]->image->extraImage->file . '.' . pathinfo($parameterSettings[$j]->image->name, PATHINFO_EXTENSION);
                 }
 
                 if ($parameterSettings[$j]->shippingPrice) {

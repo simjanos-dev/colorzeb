@@ -34,7 +34,10 @@
                         <td>{{ $product->id }}</td>
                         <td>
                             <a target="_blank" href="/product-image/{{ json_decode($product->main_image)->name }}/{{ json_decode($product->main_image)->color }}/{{ json_decode($product->main_image)->extraImage }}">
-                                <img src="/product-image/{{ json_decode($product->main_image)->name }}/{{ json_decode($product->main_image)->color }}/{{ json_decode($product->main_image)->extraImage }}">
+                                @php
+                                    $mainImage = json_decode($product->main_image);
+                                @endphp
+                                <img src="/images/processed_images/{{ explode('_', pathinfo($mainImage->name, PATHINFO_FILENAME))[0] }}_{{ $mainImage->color }}_{{ $mainImage->extraImage }}.{{ pathinfo($mainImage->name, PATHINFO_EXTENSION) }}">
                             </a>
                         </td>
                         <td>{{ $product->name }}</td>

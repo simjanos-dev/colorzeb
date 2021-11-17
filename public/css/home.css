@@ -16,7 +16,8 @@
   height: 520px;
   padding: 20px 0px;
   margin: 0px;
-  background-color: #d21e49;
+  background: #d21e49;
+  background: linear-gradient(0deg, #d21e49 0%, #d21e49 29%, #c61942 100%);
 }
 
 #content #welcome-text-box #welcome-text {

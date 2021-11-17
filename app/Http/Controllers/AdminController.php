@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use App\Mail\OrderStatus;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class AdminController extends Controller
 {
@@ -264,21 +265,56 @@ class AdminController extends Controller
         $product->main_image->color = $data['mainImage']['color'];
         $product->main_image = json_encode($product->main_image);
 
-        // images
-        $processedImages = Storage::disk('public')->files('product_images/processed/');
-        $product->images = new \StdClass;
-        $product->images->images = json_decode($data['images']);
-        for ($i = 0; $i < count($product->images->images); $i++) {
-            $imageId = explode('_', pathinfo($product->images->images[$i]->name, PATHINFO_FILENAME))[0];
+        // delete images which were not used after upload
+        $processedImages = Storage::disk('processed_images')->files();
+        for ($i = 0; $i < count($data['imagesToDelete']); $i++) {
+            $imageId = explode('_', pathinfo($data['imagesToDelete'][$i], PATHINFO_FILENAME))[0];
 
             for ($j = 0; $j < count($processedImages); $j++) {
                 $processedImageId = explode('_', pathinfo($processedImages[$j], PATHINFO_FILENAME))[0];
                 if ($processedImageId == $imageId) {
-                    Storage::disk('public')->delete($processedImages[$j]);
+                    Storage::disk('processed_images')->delete($processedImages[$j]);
                 }
             }
 
+            Storage::disk('public')->delete('product_images/' . $data['imagesToDelete'][$i]);
+        }
+        
+        // decode images
+        $product->images = new \StdClass;
+        $product->images->images = json_decode($data['images']);
+
+        // delete processed images
+        $processedImages = Storage::disk('processed_images')->files();
+        for ($i = 0; $i < count($product->images->images); $i++) {
+            $imageId = explode('_', pathinfo($product->images->images[$i]->name, PATHINFO_FILENAME))[0];
+            for ($j = 0; $j < count($processedImages); $j++) {
+                $processedImageId = explode('_', pathinfo($processedImages[$j], PATHINFO_FILENAME))[0];
+                if ($processedImageId == $imageId) {
+                    Storage::disk('processed_images')->delete($processedImages[$j]);
+                }
+            }
+        }
+
+        // images
+        for ($i = 0; $i < count($product->images->images); $i++) {
             unset($product->images->images[$i]->id);
+            
+            // create processed image
+            $processedFileName = pathinfo(explode('_', $product->images->images[$i]->name)[0], PATHINFO_FILENAME) . '_' . $product->images->images[$i]->color . '_' . $product->images->images[$i]->extraImage->file . '.' . pathinfo($product->images->images[$i]->name, PATHINFO_EXTENSION);
+
+            $coloredImage = Image::make(Storage::disk('public')->path('product_images/' . $product->images->images[$i]->name));
+            if ($product->images->images[$i]->color !== '000000') {
+                $coloredImage->colorize(intval(hexdec(substr($product->images->images[$i]->color, 0, 2)) / 255 * 100), intval(hexdec(substr($product->images->images[$i]->color, 2, 2)) / 255 * 100), intval(hexdec(substr($product->images->images[$i]->color, 4, 2)) / 255 * 100));
+            }
+            
+            $coloredImage->insert(Storage::disk('public')->path('extra_images/watermark.png'));
+            
+            if ($product->images->images[$i]->extraImage->file) {
+                $coloredImage->insert(Storage::disk('public')->path('extra_images/' . $product->images->images[$i]->extraImage->file . '.png'));
+            }
+
+            $coloredImage->save(Storage::disk('processed_images')->path($processedFileName));
         }
 
         $product->images = json_encode($product->images);
@@ -294,20 +330,6 @@ class AdminController extends Controller
 
         // save product
         $product->save();
-
-        // delete images which were not used after upload
-        $processedImages = Storage::disk('public')->files('product_images/processed/');
-        for ($i = 0; $i < count($data['imagesToDelete']); $i++) {
-            $imageId = explode('_', pathinfo($data['imagesToDelete'][$i], PATHINFO_FILENAME))[0];
-            for ($j = 0; $j < count($processedImages); $j++) {
-                $processedImageId = explode('_', pathinfo($processedImages[$j], PATHINFO_FILENAME))[0];
-                if ($processedImageId == $imageId) {
-                    Storage::disk('public')->delete($processedImages[$j]);
-                }
-            }
-
-            Storage::disk('public')->delete('product_images/' . $data['imagesToDelete'][$i]);
-        }
 
         // upload custom parameters
         if (!$newProduct) { 
