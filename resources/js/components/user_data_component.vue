@@ -3,7 +3,32 @@
         <form v-on:submit.prevent="confirmShippingData">
             <h5>Szállítási adatok</h5>
             <hr>
-            
+            <div class="form-group row">
+                <label for="payment-method" class="col-md-3 col-form-label text-md-right">Fizetési mód:</label>
+                <div class="col-md-9">
+                    <select id="payment-method" class="form-control blue" v-model="paymentMethod" required>
+                        <option value="">Kérjük válasszon</option>
+                        <option value="Átutalás">Átutalás</option>
+                        <option value="Utánvét">Utánvét</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="alert alert-warning">
+                Jelenleg kizárólag házhoz szállítással lehet tőlünk terméket rendelni, de hamarosan csomagautomaták és csomagpontok is elérhetőek lesznek.
+            </div>
+            <div class="form-group row">
+                <label for="shipping-method" class="col-md-3 col-form-label text-md-right">Szállítási mód:</label>
+                <div class="col-md-9">
+                    <select id="shipping-method" class="form-control blue" v-model="shippingMethod" required>
+                        <option value="">Kérjük válasszon</option>
+                        <option value="MPL futárszolgálat">Posta futárszolgálat</option>
+                        <option value="DPD futárszolgálat">DPD futárszolgálat</option>
+                        <option value="Foxpost futárszolgálat">Foxpost futárszolgálat</option> 
+                    </select>
+                </div>
+            </div>
+
             <div class="form-group row">
                 <label for="shipping-name" class="col-md-3 col-form-label text-md-right">Név:</label>
                 <div class="col-md-9">
@@ -81,11 +106,14 @@
     export default {
         data: function() {
             return {
+                paymentMethod: this.$props._paymentMethod,
+
                 shippingName: this.$props._shippingName,
                 shippingPhone: this.$props._shippingPhone,
                 shippingZip: this.$props._shippingZip,
                 shippingCity: this.$props._shippingCity,
                 shippingAddress: this.$props._shippingAddress,
+                shippingMethod: this.$props._shippingMethod,
 
                 billingName: this.$props._billingName,
                 billingTaxNumber: this.$props._billingTaxNumber,
@@ -98,6 +126,10 @@
             };
         },
         props: {
+            _paymentMethod: {
+                type: String,
+                default: '',
+            },
             _shippingName: {
                 type: String,
                 default: '',
@@ -115,6 +147,10 @@
                 default: '',
             },
             _shippingAddress: {
+                type: String,
+                default: '',
+            },
+            _shippingMethod: {
                 type: String,
                 default: '',
             },
@@ -169,12 +205,14 @@
                 var data = {};
                 data.email = this.email;
                 data.comment = this.comment;
+                data.paymentMethod = this.paymentMethod;
 
                 data.shippingName = this.shippingName;
                 data.shippingPhone = this.shippingPhone;
                 data.shippingZip = this.shippingZip;
                 data.shippingCity = this.shippingCity;
                 data.shippingAddress = this.shippingAddress;
+                data.shippingMethod = this.shippingMethod;
 
                 data.billingName = this.billingName;
                 data.billingTaxNumber = this.billingTaxNumber;

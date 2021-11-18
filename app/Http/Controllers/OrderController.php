@@ -49,12 +49,14 @@ class OrderController extends Controller
             $orderCustomerData = new \StdClass();
             $orderCustomerData->email = $user->email;
             $orderCustomerData->comment = '';
+            $orderCustomerData->paymentMethod = $user->payment_method;
 
             $orderCustomerData->shippingName = $user->shipping_name;
             $orderCustomerData->shippingPhone = $user->shipping_phone;
             $orderCustomerData->shippingZip = $user->shipping_zip_code;
             $orderCustomerData->shippingCity = $user->shipping_city;
             $orderCustomerData->shippingAddress = $user->shipping_address;
+            $orderCustomerData->shippingMethod = $user->shipping_method;
 
             $orderCustomerData->billingName = $user->billing_name;
             $orderCustomerData->billingTaxNumber = $user->billing_tax_number;
@@ -78,12 +80,14 @@ class OrderController extends Controller
         $customerData = new \StdClass();
         $customerData->email = $data['email'];
         $customerData->comment = $data['comment'];
+        $customerData->paymentMethod = $data['paymentMethod'];
 
         $customerData->shippingName = $data['shippingName'];
         $customerData->shippingPhone = $data['shippingPhone'];
         $customerData->shippingZip = $data['shippingZip'];
         $customerData->shippingCity = $data['shippingCity'];
         $customerData->shippingAddress = $data['shippingAddress'];
+        $customerData->shippingMethod = $data['shippingMethod'];
 
         $customerData->billingName = $data['billingName'];
         $customerData->billingTaxNumber = $data['billingTaxNumber'];
@@ -142,6 +146,7 @@ class OrderController extends Controller
         $order->email = $orderCustomerData->email;
         $order->user_comment = is_null($orderCustomerData->comment) ? '' : $orderCustomerData->comment;
         $order->admin_comment = '';
+        $order->payment_method = $orderCustomerData->paymentMethod;
         $order->billing_name = $orderCustomerData->billingName;
         $order->billing_tax_number = is_null($orderCustomerData->billingTaxNumber) ? '' : $orderCustomerData->billingTaxNumber;
         $order->billing_zip_code = $orderCustomerData->billingZip;
@@ -152,6 +157,7 @@ class OrderController extends Controller
         $order->shipping_zip_code = $orderCustomerData->shippingZip;
         $order->shipping_city = $orderCustomerData->shippingCity;
         $order->shipping_address = $orderCustomerData->shippingAddress;
+        $order->shipping_method = $orderCustomerData->shippingMethod;
         $order->price = $sumPrice;
         $order->shipping_price = $shippingPrice;
         $order->payed = false;
@@ -176,6 +182,7 @@ class OrderController extends Controller
             $user = Auth::user();
             $user->billing_name = $orderCustomerData->billingName;
             $user->billing_tax_number = is_null($orderCustomerData->billingTaxNumber) ? '' : $orderCustomerData->billingTaxNumber;
+            $user->payment_method = $orderCustomerData->paymentMethod;
             $user->billing_zip_code = $orderCustomerData->billingZip;
             $user->billing_city = $orderCustomerData->billingCity;
             $user->billing_address = $orderCustomerData->billingAddress;
@@ -184,6 +191,7 @@ class OrderController extends Controller
             $user->shipping_zip_code = $orderCustomerData->shippingZip;
             $user->shipping_city = $orderCustomerData->shippingCity;
             $user->shipping_address = $orderCustomerData->shippingAddress;
+            $user->shipping_method = $orderCustomerData->shippingMethod;
             $user->save();
         }
 

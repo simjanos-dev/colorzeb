@@ -56,6 +56,10 @@
                 <div class="order-info-value">{{ $orderCustomerData->email }}</div>
             </div>
             <div class="order-info-line">
+                <div class="order-info-label">Fizetési mód</div>
+                <div class="order-info-value">{{ $orderCustomerData->paymentMethod }}</div>
+            </div>
+            <div class="order-info-line">
                 <div class="order-info-label">Megjegyzés</div>
                 <div class="order-info-value">{{ $orderCustomerData->comment }}</div>
             </div>
@@ -63,6 +67,10 @@
 
         <div id="order-customer-shipping-data" class="col-sm-12 col-lg-8 offset-lg-2">
             <div class="order-info-line title">Szállítási adatok</div>
+            <div class="order-info-line">
+                <div class="order-info-label">Szállítási mód</div>
+                <div class="order-info-value">{{ $orderCustomerData->shippingMethod }}</div>
+            </div>
             <div class="order-info-line">
                 <div class="order-info-label">Név</div>
                 <div class="order-info-value">{{ $orderCustomerData->shippingName }}</div>

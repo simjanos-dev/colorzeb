@@ -12,12 +12,14 @@
             <order-shipping-component
                 _email="{{ $orderCustomerData->email }}"
                 _comment="{{ $orderCustomerData->comment }}"
-                
+                _payment-method="{{ $orderCustomerData->paymentMethod }}"
+
                 _shipping-name="{{ $orderCustomerData->shippingName }}"
                 _shipping-phone="{{ $orderCustomerData->shippingPhone }}"
                 _shipping-zip="{{ $orderCustomerData->shippingZip }}"
                 _shipping-city="{{ $orderCustomerData->shippingCity }}"
                 _shipping-address="{{ $orderCustomerData->shippingAddress }}"
+                _shipping-method="{{ $orderCustomerData->shippingMethod }}"
 
                 _billing-name="{{ $orderCustomerData->billingName }}"
                 _billing-tax-number="{{ $orderCustomerData->billingTaxNumber }}"

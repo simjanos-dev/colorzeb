@@ -96,8 +96,8 @@
                     <td>{{ $order->email }}</td>
                 </tr>
                 <tr>
-                    <td>Megjegyzés</td>
-                    <td>{{ $order->user_comment }}</td>
+                    <td>Fizetési mód</td>
+                    <td>{{ $order->payment_method }}</td>
                 </tr>
                 <tr>
                     <td>Állapot</td>
@@ -111,6 +111,10 @@
                     <td>Időpont</td>
                     <td>{{ $order->created_at->format('Y.m.d. H:i') }}</td>
                 </tr>
+                <tr>
+                    <td>Megjegyzés</td>
+                    <td>{{ $order->user_comment }}</td>
+                </tr>
             </tbody>
         </table>
 
@@ -121,6 +125,10 @@
                 </tr>
             </thead>
             <tbody>
+                <tr>
+                    <td>Szállítási mód</td>
+                    <td>{{ $order->shipping_method }}</td>
+                </tr>
                 <tr>
                     <td>Név</td>
                     <td>{{ $order->shipping_name }}</td>

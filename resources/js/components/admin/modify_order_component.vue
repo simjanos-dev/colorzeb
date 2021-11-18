@@ -46,12 +46,16 @@
                     <td>{{ order.email }}</td>
                 </tr>
                 <tr>
-                    <td>Megjegyzés</td>
-                    <td>{{ order.user_comment }}</td>
-                </tr>
-                                <tr>
                     <td>Időpont</td>
                     <td>{{ order.created_at.split('.')[0].replace('T', ' ').slice(0, -3) }}</td>
+                </tr>
+                <tr>
+                    <td>Fizetési mód</td>
+                    <td>{{ order.payment_method }}</td>
+                </tr>
+                <tr>
+                    <td>Megjegyzés</td>
+                    <td>{{ order.user_comment }}</td>
                 </tr>
             </tbody>
         </table>
@@ -63,6 +67,10 @@
                 </tr>
             </thead>
             <tbody>
+                <tr>
+                    <td>Szállítási mód</td>
+                    <td>{{ order.shipping_method }}</td>
+                </tr>
                 <tr>
                     <td>Név</td>
                     <td>{{ order.shipping_name }}</td>

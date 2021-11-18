@@ -6,11 +6,14 @@
 
 @section('content')
     <user-data-component
+        _payment-method="{{ $user->payment_method }}"
+
         _shipping-name="{{ $user->shipping_name }}"
         _shipping-phone="{{ $user->shipping_phone }}"
         _shipping-zip="{{ $user->shipping_zip_code }}"
         _shipping-city="{{ $user->shipping_city }}"
         _shipping-address="{{ $user->shipping_address }}"
+        _shipping-method="{{ $user->shipping_method }}"
 
         _billing-name="{{ $user->billing_name }}"
         _billing-tax-number="{{ $user->billing_tax_number }}"

@@ -91,6 +91,7 @@ class HomeController extends Controller
     public function saveUserData(Request $request) {
         $data = $request->all();
         $user = Auth::user();
+        $user->payment_method = $data['paymentMethod'];
         $user->billing_name = $data['billingName'];
         $user->billing_tax_number = is_null($data['billingTaxNumber']) ? '' : $data['billingTaxNumber'];
         $user->billing_zip_code = $data['billingZip'];
@@ -101,6 +102,7 @@ class HomeController extends Controller
         $user->shipping_zip_code = $data['shippingZip'];
         $user->shipping_city = $data['shippingCity'];
         $user->shipping_address = $data['shippingAddress'];
+        $user->shipping_method = $data['shippingMethod'];
         $user->save();
 
         return 'success';

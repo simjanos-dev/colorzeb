@@ -60,17 +60,25 @@
                 <div class="order-info-value">{{ $order->email }}</div>
             </div>
             <div class="order-info-line">
-                <div class="order-info-label">Megjegyzés</div>
-                <div class="order-info-value">{{ $order->comment }}</div>
+                <div class="order-info-label">Fizetési mód</div>
+                <div class="order-info-value">{{ $order->payment_method }}</div>
             </div>
             <div class="order-info-line">
                 <div class="order-info-label">Fizetve</div>
                 <div class="order-info-value">{{ $order->payed ? 'Igen' : 'Nem' }}</div>
             </div>
+            <div class="order-info-line">
+                <div class="order-info-label">Megjegyzés</div>
+                <div class="order-info-value">{{ $order->comment }}</div>
+            </div>
         </div>
 
         <div id="order-customer-shipping-data" class="col-sm-12">
             <div class="order-info-line title">Szállítási adatok</div>
+            <div class="order-info-line">
+                <div class="order-info-label">Szállítási mód</div>
+                <div class="order-info-value">{{ $order->shipping_method }}</div>
+            </div>
             <div class="order-info-line">
                 <div class="order-info-label">Név</div>
                 <div class="order-info-value">{{ $order->shipping_name }}</div>
