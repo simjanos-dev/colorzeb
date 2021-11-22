@@ -19,9 +19,11 @@ class HomeController extends Controller
     }
 
     public function index() {
+        $sliderImages = array_diff(scandir('./images/home_page/'), array('.', '..'));
         $products = Product::orderBy('created_at', 'DESC')->limit(40)->get();
         return view('home', [
             'newProducts' => $products,
+            'sliderImages' => array_values($sliderImages),
         ]);
     }
 

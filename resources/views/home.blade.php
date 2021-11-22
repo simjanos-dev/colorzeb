@@ -11,7 +11,7 @@
         <div id="welcome-text" class="col-sm-12">
             <div id="welcome-text-left">
                 <image-slide-component
-                    :_images="['/images/home-page-image.jpg', '/images/home-page-image.jpg', '/images/home-page-image.jpg', '/images/home-page-image.jpg', '/images/home-page-image.jpg', '/images/home-page-image.jpg', '/images/home-page-image.jpg']"
+                    :_images="{{ json_encode($sliderImages) }}"
                 ></image-slide-component>
             </div>
             <div id="welcome-text-right">

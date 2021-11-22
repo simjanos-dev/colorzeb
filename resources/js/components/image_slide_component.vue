@@ -89,9 +89,10 @@
 
         mounted: function() {
             window.addEventListener('resize', this.resize);
+            
             for (var i = 0; i < this.$props._images.length; i++) {
                 this.images.push({
-                    src: this.$props._images[i],
+                    src: '/images/home_page/' + this.$props._images[i],
                     left: (i*100) + '%',
                 });
             }
