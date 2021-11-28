@@ -16,7 +16,7 @@
             </div>
             <div id="welcome-text-right">
                 <div id="welcome-text-header">
-                    <img src="/images/logo.png">
+                    <img src="/images/logo-black.png">
                 </div>
                 <h5>Matricák és sok más kreatív díszlet és ajándék!</h5>
                 <div>
@@ -25,8 +25,8 @@
                         <li>Egyedi céges logó matrica</li>
                         <li>Fali matricák</li>
                         <li>Autós matricák</li>
-                        <li>Egyedi borítékok</li>
-                        <li>Egyedi dobozok</li>
+                        <li>Ajándéktárgyak</li>
+                        <li>Papír termékek </li>
                     </ul>
                 </div>
             </div>
@@ -37,10 +37,15 @@
             <div class="home-category">
                 <div class="home-category-image-box"><img src="/images/wall-stickers.jpg"></div>
                 <div class="home-category-name">Matricák</div>
-                <div class="home-category-description">Válogass a rengeteg előre megtervezett matricáink közül.</div>
-                <a href="#"><button class="button blue">Fali matricák</button></a>
-                <a href="#"><button class="button blue">Autós matricák</button></a>
-                <a href="#"><button class="button blue">Laptop matricák</button></a>
+                <div class="home-category-description">
+                    Válogass a rengeteg előre megtervezett matricáink közül.<br>
+                    <ul>
+                        <li><a href="#">Fali matricák</a></li>
+                        <li><a href="#">Autós matricák</a></li>
+                        <li><a href="#">Matrica csomagok</a></li>
+                    </ul>
+                </div>
+                <a href="#"><button class="button blue"><i class="fa fa-search"></i> Összes matrica</button></a>
             </div>
         </div>
         <div class="home-category-box col-sm-6 col-xl-3 text-center">
@@ -48,15 +53,15 @@
                 <div class="home-category-image-box"><img src="/images/truck.jpg"></div>
                 <div class="home-category-name">Egyedi matrica árajánlat</div>
                 <div class="home-category-description">Kérj ajánlatot egyedi matricára a már meglévő mintádból. Remek lehetőség céges logó matricák készítéséhez.</div>
-                <a href="#"><button class="button blue">Egyedi árajánlat</button></a>
+                <a href="/custom-order"><button class="button blue"><i class="fa fa-comment"></i> Egyedi árajánlat</button></a>
             </div>
         </div>
         <div class="home-category-box col-sm-6 col-xl-3 text-center">
             <div class="home-category">
-                <div class="home-category-image-box"><img src="/images/custom-photo-stickers.jpg"></div>
-                <div class="home-category-name">Matrica fényképből</div>
-                <div class="home-category-description">Készíts matricát a fényképek alapján. Nagyszerű választás matricák készítéséhez kedvenc háziállatodról.</div>
-                <a href="#"><button class="button blue">Matrica fényképből</button></a>
+                <div class="home-category-image-box"><img src="https://www.managementcentre.co.uk/wp-content/uploads/presents-500x500.jpg"></div>
+                <div class="home-category-name">Ajándéktárgyak</div>
+                <div class="home-category-description"></div>
+                <a href="#"><button class="button blue"><i class="fa fa-gift"></i> Ajándéktárgyak</button></a>
             </div>
         </div>
         <div class="home-category-box col-sm-6 col-xl-3 text-center">
@@ -64,11 +69,11 @@
                 <div class="home-category-image-box"><img src="/images/custom-boxes.jpg"></div>
                 <div class="home-category-name">Papír ajándékok és díszek</div>
                 <div class="home-category-description">Válogass papírból készült egyedi termékeink közül: díszdobozok, díszborítékok, adventi naptárak. </div>
-                <a href="#"><button class="button blue">Papír díszek</button></a>
+                <a href="#"><button class="button blue"><i class="fa fa-sticky-note"></i> Papír díszek</button></a>
             </div>
         </div>
     </div>
     <product-slide-component :_products="{{ $newProducts }}" _title="Új termékek"></product-slide-component>
-    <product-slide-component :_products="{{ $newProducts }}" _title="Akciós termékek"></product-slide-component>
+    <product-slide-component :_products="{{ $discountedProducts }}" _title="Akciós termékek"></product-slide-component>
 </div>
 @endsection

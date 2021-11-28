@@ -20,9 +20,11 @@ class HomeController extends Controller
 
     public function index() {
         $sliderImages = array_diff(scandir('./images/home_page/'), array('.', '..'));
-        $products = Product::orderBy('created_at', 'DESC')->limit(40)->get();
+        $newProducts = Product::orderBy('created_at', 'DESC')->limit(12)->get();
+        $discountedProducts = Product::where('discount_price', '<>', 0)->orderBy('created_at', 'DESC')->limit(12)->get();
         return view('home', [
-            'newProducts' => $products,
+            'newProducts' => $newProducts,
+            'discountedProducts' => $discountedProducts,
             'sliderImages' => array_values($sliderImages),
         ]);
     }
@@ -31,14 +33,30 @@ class HomeController extends Controller
         return view('aszf');
     }
 
+    public function shipping() {
+        return view('shipping');
+    }
+
     public function contact() {
         return view('contact');
+    }
+
+    public function customOrder() {
+        return view('custom_order');
+    }
+
+    public function sendCustomOrderMessage(Request $request) {
+        $data = $request->all();
+
+        Mail::to('zsuzsi@colorzebdesign.hu')->send(new ContactMessage($data['name'], $data['email'], $data['text']));
+
+        return 'success';
     }
 
     public function sendContactMessage(Request $request) {
         $data = $request->all();
 
-        Mail::to('sim.jan.web@gmail.com')->send(new ContactMessage($data['name'], $data['email'], $data['text']));
+        Mail::to('zsuzsi@colorzebdesign.hu')->send(new ContactMessage($data['name'], $data['email'], $data['text']));
 
         return 'success';
     }

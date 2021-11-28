@@ -17,15 +17,12 @@
         height: 520px;
         padding: 20px 0px;
         margin: 0px;
-        background: rgb(210,30,73);
-        background: linear-gradient(0deg, rgba(210,30,73,1) 0%, rgba(210,30,73,1) 29%, rgba(198,25,66,1) 100%);
 
         #welcome-text {
             width: 100%;
             max-width: 1500px;
             height: 100%;
             margin: 0px auto;
-            color: $white;
 
             #welcome-text-left {
                 display: inline-block;
@@ -70,7 +67,7 @@
 .home-category {
     display: inline-block;
     background-color: $white;
-    height: 475px;
+    height: 513px;
     width: 320px;
     border-radius: 2px;
     border: 1px solid rgba(0, 0, 0, 0.15);
@@ -83,10 +80,21 @@
     -webkit-user-select: none;
     overflow: hidden;
     color: $font-color;
-    transition: .2s;
+    transition: .2s;    
+
+    ul  {
+        padding-left: 16px;
+        margin-top: 7px;
+    }
 
     button {
-        font-size: 12px;
+        height: 28px;
+        font-size: 13px;
+
+        i {
+            font-size: 16px;
+            margin-right: 4px;
+        }
     }
 
     &:hover {
@@ -95,10 +103,6 @@
         img {
             transform: scale(1.0);
         }
-    }
-
-    .button {
-        height: 26px;
     }
 
     .home-category-name {
@@ -117,7 +121,7 @@
         width: 100%;
         text-align: left;
         font-size: 13px;
-        height: 82px;
+        height: 120px;
     }
     
     .home-category-image-box {
@@ -166,14 +170,14 @@
     }
 
     .home-category {
-        height: 490px;
+        height: 465px;
         width: 260px;
         font-size: 14px;
         
         button.button {
             display: block;
             margin: 5px auto;
-            width: 120px;
+            width: 140px;
         }
 
         .home-category-name {
@@ -200,7 +204,7 @@
 
 @media (max-width: 1199px) {
     .home-category {
-        height: 560px;
+        height: 600px;
         width: 400px;
 
         button.button {
@@ -271,7 +275,8 @@
         button.button {
             display: block;
             margin: 5px auto;
-            width: 120px;
+            width: 140px;
+            font-size: 12px;
         }
     }   
 }

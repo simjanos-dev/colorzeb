@@ -1,0 +1,15 @@
+#custom-order input.form-control,
+#custom-order textarea.form-control {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#custom-order textarea {
+  height: 200px;
+}
+
+#custom-order h4 {
+  margin-bottom: 15px;
+  text-align: center;
+}
+

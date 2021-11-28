@@ -37,7 +37,7 @@ class OrderStatus extends Mailable
             'Megerősítve' => 'Rendelésed megerősítve',
             'Elutasítva' => 'Rendelésed elutasítva',
             'Fizetésre vár' => 'Rendelésed fizetésre vár',
-            'Feladva' => 'Rendelésed feladva',
+            'Feladva' => 'Rendelésed feladásra került',
             'Teljesítve' => 'Rendelésed teljesítve',
             'Törölve' => 'Rendelésed törölve',
         ];

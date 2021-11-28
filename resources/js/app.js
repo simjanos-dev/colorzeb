@@ -23,6 +23,7 @@ Vue.component('cookie-notification-component', require('./components/cookie_noti
 Vue.component('nav-product-search-component', require('./components/nav_product_search_component.vue').default);
 Vue.component('navbar-cart-component', require('./components/navbar_cart_component.vue').default);
 Vue.component('contact-component', require('./components/contact_component.vue').default);
+Vue.component('custom-order-component', require('./components/custom_order_component.vue').default);
 Vue.component('image-slide-component', require('./components/image_slide_component.vue').default);
 Vue.component('product-slide-component', require('./components/product_slide_component.vue').default);
 Vue.component('add-to-cart-button-component', require('./components/add_to_cart_button_component.vue').default);

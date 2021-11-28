@@ -18,11 +18,13 @@
         @endif
 
         @if ($status == 'Fizetésre vár')
-            #{{ $order->id }} számú rendelésed fizetésre vár!
+            #{{ $order->id }} számú rendelésed fizetésre vár!<br><br>
+            Hamarosan küldjük a számlát a megadott e-mail címre, melyen minden szükséges adatot megtalálsz az utaláshoz. <br><br>
+            Kérlek az utalás közleményébe írd be a rendelési számodat. 
         @endif
 
         @if ($status == 'Feladva')
-            #{{ $order->id }} számú rendelésed feladásra került!
+            #{{ $order->id }} számú rendelésed a mai napon feladásra került!
         @endif
 
         @if ($status == 'Teljesítve')
@@ -30,7 +32,8 @@
         @endif
         
         @if ($status == 'Törölve')
-            #{{ $order->id }} számú rendelésed törölve!
+            #{{ $order->id }} számú rendelésed törölve!<br>
+            További információért vedd fel velünk a kapcsolatot elérehetőségeink valamelyikén.
         @endif
 
         @if (strlen($customText))

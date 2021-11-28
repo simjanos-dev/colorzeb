@@ -211,21 +211,74 @@ html, body{
 #footer {
     box-sizing: border-box;
     box-shadow: 0 0.125rem -0.25rem rgba(0, 0, 0, 0.075) !important;
-    height: 50px;
-    line-height: 50px;
-    background-color: $first;
+    height: 75px;
+    line-height: 75px;
+    background-color: #d9d9d9;
     text-align: center;
     overflow: hidden;
+
+    #footer-left {
+        display: inline-block;
+        float: left;
+        width: 220px;
+        height: 75px;
+        line-height: 22px;
+        text-align: left;
+        padding-left: 6px;
+        padding-top: 6px;
+
+        #footer-small-social-media {
+            display: none;
+            width: 100%;
+            height: 100%;
+            padding: 0px;
+            margin: 0px;
+        }
+
+        i {
+            width: 20px;
+        }
+    }
+
+    #footer-middle {
+        display: inline-block;
+        float: left;
+        width: calc(100% - 220px - 220px);
+        height: 75px;
+        line-height: 75px;
+        text-align: center;
+        margin: 0px;
+    }
+
+    #footer-right {
+        display: inline-block;
+        float: left;
+        width: 220px;
+        height: 75px;
+        line-height: 75px;
+        text-align: left;
+    }
     
     a, a:active, a:hover, a:visited {
         text-decoration: none;
         outline: none;
-        color: $white;
-        
+        color: $font-color-light2;
+        user-select: none;
+
         &:hover {
-            color: $white;
+            color: $font-color-light2;
             text-decoration: underline;
         }
+    }
+
+    i.fa-facebook {
+        color: #4064ac !important;
+        margin-top: 20px;
+    }
+
+    i.fa-instagram {
+        color: #c1558b !important;
+        margin-top: 20px;
     }
 }
 
@@ -249,7 +302,8 @@ html, body{
 
 .footer-link {
     color: $white;
-    font-size: 14px;
+    font-size: 16px;
+    
     &:hover {
         color: rgb(235, 235, 235);
     }
@@ -366,10 +420,46 @@ html, body{
             color: $white;
             background-color: $first;
         }
-        
-        .dropdown-item:hover,
-        .dropdown-item.focus,
-        .dropdown-item:active {
+    }
+
+    #footer {
+        #footer-middle {
+            display: none;
+        }
+
+        #footer-left, #footer-right {
+            width: 50%;
+        }    
+    }
+}
+
+@media (max-width: 450px) {
+    #footer {
+        height: 175px;
+
+        #footer-right {
+            display: none;
+        }
+
+        #footer-left {
+            display: block;
+            width: 100%;
+            float: none;
+            text-align: left;
+            height: 175px;
+            line-height: 28px;
+            padding-left: calc((100% - 176px) / 2);
+            padding-top: 18px;
+
+            #footer-small-social-media {
+                display: block;
+            }
+
+            a, i.fa.fa-facebook, i.fa.fa-instagram {
+                height: 28px;
+                line-height: 28px;
+                margin: 0px;
+            }
         }
     }
 }

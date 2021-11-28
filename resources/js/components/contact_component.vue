@@ -73,7 +73,6 @@
                     this.sent = true;
                     this.label = "Sikeres üzenetküldés!"
                 }).catch(error  => {
-                    alert('hiba');
                     this.label = "Hiba!"
                 });
             }
