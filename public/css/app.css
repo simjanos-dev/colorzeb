@@ -14572,6 +14572,7 @@ body {
 @media (max-width: 767px) {
   #cookie-notification-box.visible {
     height: auto;
+    bottom: 100px;
   }
 }
 
