@@ -136,6 +136,10 @@
                             </li>
 
                             <li class="nav-item mobile-link">
+                                <a class="nav-link" href="/aszf"><i class="fa fa-file"></i> ÁSZF</a>
+                            </li>
+
+                            <li class="nav-item mobile-link">
                                 <a class="nav-link" href="/login"><i class="fa fa-sign-in"></i> Belépés</a>
                             </li>
 
@@ -204,40 +208,19 @@
             </div>
         </nav>
 
-        <div class="row col-sm-12" id="content">
-            @yield('content')
-        </div>
-
-        <footer id="footer" class="mt-auto">
-            <div id="footer-left">
-                <i class="fa fa-heart"></i> ColorZeb Design<br>
-                <i class="fa fa-phone"></i> 06 30 451 8699<br>
-                <i class="fa fa-envelope"></i> zsuzsi@colorzebdesign.hu<br>
-                <div id="footer-small-social-media">
-                    <i class="fa fa-facebook"></i> <a href="https://www.facebook.com/ColorZebDesign/">/ColorZebDesign</a><br>
-                    <i class="fa fa-instagram"></i> <a href="https://www.instagram.com/colorzeb_design/">/colorzeb_design</a>
-                </div>
+        @if (!isset($contentOutsideApp) || !$contentOutsideApp)
+            <div class="row col-sm-12" id="content">
+                @yield('content')
             </div>
-            <ul id="footer-middle">
-                <li class="footer-item">
-                    <a href="/contact" class="footer-link">Kapcsolat</a>
-                </li>
-                <li class="footer-item">
-                    <a href="/shipping" class="footer-link">Szállítás</a>
-                </li>
-                <li class="footer-item">
-                    <a href="/aszf" class="footer-link">ÁSZF</a>
-                </li>
-            </ul>
-            <ul id="footer-right">
-                <li class="footer-item right">
-                    <a target="_blank" class="footer-image-link" href="https://www.instagram.com/colorzeb_design/"><i class="fa fa-instagram"></i></a>
-                </li>
-                <li class="footer-item right">
-                    <a target="_blank" class="footer-image-link" href="https://www.facebook.com/ColorZebDesign/"><i class="fa fa-facebook"></i></a>
-                </li>
-            </ul>
-        </footer>
+
+            @include('layouts.footer')
+        @endif
     </div>
+    @if (isset($contentOutsideApp) && $contentOutsideApp)
+        <div class="row col-sm-12" id="content">
+                @yield('content')
+        </div>
+        @include('layouts.footer')
+    @endif
 </body>
 </html>

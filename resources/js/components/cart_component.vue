@@ -21,9 +21,7 @@
 
         <div id="cart-sum" class="col-lg-2 offset-lg-9">
             <div class="cart-sum-line">Szállítás: <div class="cart-sum-line-value">{{ shipping }} Ft</div></div>
-            <div class="cart-sum-line">Nettó végösszeg: <div class="cart-sum-line-value">{{ sumPriceBeforeVat }} Ft</div></div>
-            <div class="cart-sum-line">Áfa (27%): <div class="cart-sum-line-value">{{ sumVat }} Ft</div></div>
-            <div class="cart-sum-line">Fizetendő: <div class="cart-sum-line-value">{{ sumPriceAfterVat }} Ft</div></div>
+            <div class="cart-sum-line">Fizetendő: <div class="cart-sum-line-value">{{ sumPrice }} Ft</div></div>
         </div>
 
         <div id="next-button-box" class="text-right col-sm-12 col-lg-9 offset-lg-2">
@@ -41,30 +39,23 @@
             return {
                 cartItems: this.$props._cartItems,
                 shipping: 0,
-                sumPriceBeforeVat: 0,
-                sumPriceAfterVat: 0,
-                sumVat: 0,
+                sumPrice: 0,
             }
         },
         props: {
             _cartItems: Array,
         },
         methods: {
-            calculateSumPrices : function() {
-                this.sumPriceBeforeVat = 0;
-                this.sumPriceAfterVat = this.shipping;
-                this.sumVat = 0;
+            calculateSumPrices: function() {
+                this.sumPrice = this.shipping;
                 
                 for (var i = 0; i < this.cartItems.length; i++) {
-                    this.sumPriceAfterVat += this.cartItems[i].price * this.cartItems[i].quantity;
+                    this.sumPrice += this.cartItems[i].price * this.cartItems[i].quantity;
                 }
                 
-                if (this.sumPriceAfterVat == this.shipping) {
-                    this.sumPriceAfterVat = 0;
+                if (this.sumPrice == this.shipping) {
+                    this.sumPrice = 0;
                 }
-
-                this.sumVat = Math.round(this.sumPriceAfterVat - this.sumPriceAfterVat / 1.27);
-                this.sumPriceBeforeVat = this.sumPriceAfterVat - this.sumVat;
             },
             removeCartItem: function(id) {
                 for (var i = 0; i < this.cartItems.length; i++) {
@@ -123,8 +114,8 @@
                 }
             }
 
-            this.calculateSumPrices();
             this.calculateShippingPrice();
+            this.calculateSumPrices();
         }
     }
 </script>

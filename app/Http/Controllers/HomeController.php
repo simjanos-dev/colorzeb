@@ -30,11 +30,15 @@ class HomeController extends Controller
     }
 
     public function aszf() {
-        return view('aszf');
+        return view('aszf', [
+            'contentOutsideApp' => true,
+        ]);
     }
 
     public function shipping() {
-        return view('shipping');
+        return view('shipping', [
+            'contentOutsideApp' => true,
+        ]);
     }
 
     public function contact() {

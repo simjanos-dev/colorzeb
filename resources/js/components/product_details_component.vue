@@ -47,16 +47,20 @@
                 </div>
             </div>
             <div id="product-custom-description" v-html="_description"></div>
-            <div id="product-price-box">
-                    <div id="product-price" v-if="discountPrice">{{ discountPrice }} Ft</div>
-                    <div id="product-old-price" v-if="discountPrice">{{ price }} Ft</div>
-                    <div id="product-price-spacing" v-if="!discountPrice">&nbsp;</div>
-                    <div id="product-price" v-if="!discountPrice">{{ price }} Ft</div>
+            <div id="product-price-and-cart-box">
+                <div id="product-price-box">
+                        <div id="product-price" v-if="discountPrice">{{ discountPrice }} Ft</div>
+                        <div id="product-old-price" v-if="discountPrice">{{ price }} Ft</div>
+                        <div id="product-price-spacing" v-if="!discountPrice">&nbsp;</div>
+                        <div id="product-price" v-if="!discountPrice">{{ price }} Ft</div>
+                </div>
+                <div id="product-cart-button-box">
+                    <a :href="'/admin/edit-product/' + _id" v-if="_isAdmin">
+                        <button class="edit-product-button button blue" title="Szerkesztés"><i class="fa fa-edit"></i></button>
+                    </a>
+                </div>
+                <add-to-cart-button-component :_id="_id" :_display-text="true" :_parameters="selectedParameters" ></add-to-cart-button-component>
             </div>
-            <a :href="'/admin/edit-product/' + _id" v-if="_isAdmin">
-                <button class="edit-product-button button blue" title="Szerkesztés"><i class="fa fa-edit"></i></button>
-            </a>
-            <add-to-cart-button-component :_id="_id" :_display-text="true" :_parameters="selectedParameters" ></add-to-cart-button-component>
         </div>
     </div>
 </template>

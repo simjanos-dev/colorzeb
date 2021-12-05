@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('head')
+    <link href="{{ asset('css/countent_outside_vue_app.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')

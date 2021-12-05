@@ -52,8 +52,16 @@
                 }
             },
             slideTo: function(index) {
-                if (index == this.currentIndex || this.moving || index < 0 || index > this.images.length - 1) {
+                if (index == this.currentIndex || this.moving) {
                     return;
+                }
+
+                if (index < 0) {
+                    index = this.images.length - 1;
+                }
+
+                if (index > this.images.length - 1) {
+                    index = 0;
                 }
 
                 window.clearTimeout(this.autoMoveTimer);

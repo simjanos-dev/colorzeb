@@ -111,16 +111,9 @@
             </div>
         </div>
 
-        @php
-            $sumPriceAfterTax += $shippingPrice;
-            $vat = round($sumPriceAfterTax - $sumPriceAfterTax / 1.27);
-            $priceBeforeTax = $sumPriceAfterTax - $vat;
-        @endphp
         <div id="order-confirm-sum" class="col-lg-2 offset-lg-8">
             <div class="order-confirm-sum-line">Szállítás: <div class="order-confirm-sum-line-value">{{ $shippingPrice }} Ft</div></div>
-            <div class="order-confirm-sum-line">Nettó végösszeg: <div class="order-confirm-sum-line-value">{{ $priceBeforeTax }} Ft</div></div>
-            <div class="order-confirm-sum-line">Áfa (27%): <div class="order-confirm-sum-line-value">{{ $vat }} Ft</div></div>
-            <div class="order-confirm-sum-line">Fizetendő: <div class="order-confirm-sum-line-value">{{ $sumPriceAfterTax }} Ft</div></div>
+            <div class="order-confirm-sum-line">Fizetendő: <div class="order-confirm-sum-line-value">{{ $sumPriceAfterTax + $shippingPrice }} Ft</div></div>
         </div>
         <div id="order-confirm-button-box" clasS="col-sm-12 col-lg-8 offset-lg-2 text-right">
             <a href="/create-order">
