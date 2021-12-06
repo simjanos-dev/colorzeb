@@ -35,7 +35,7 @@
     <div id="categories" class="row col-sm-12">
         <div class="home-category-box col-sm-6 col-xl-3 text-center">
             <div class="home-category">
-                <div class="home-category-image-box"><img src="/images/wall-stickers.jpg"></div>
+                <div class="home-category-image-box"><img src="/images/home-stickers.jpg"></div>
                 <div class="home-category-name">Matricák</div>
                 <div class="home-category-description">
                     Válogass a rengeteg előre megtervezett matricáink közül.<br>

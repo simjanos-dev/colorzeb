@@ -20,8 +20,8 @@ class HomeController extends Controller
 
     public function index() {
         $sliderImages = array_diff(scandir('./images/home_page/'), array('.', '..'));
-        $newProducts = Product::orderBy('created_at', 'DESC')->limit(12)->get();
-        $discountedProducts = Product::where('discount_price', '<>', 0)->orderBy('created_at', 'DESC')->limit(12)->get();
+        $newProducts = Product::orderBy('created_at', 'DESC')->where('active', '1')->limit(12)->get();
+        $discountedProducts = Product::where('discount_price', '<>', 0)->where('active', '1')->orderBy('created_at', 'DESC')->limit(12)->get();
         return view('home', [
             'newProducts' => $newProducts,
             'discountedProducts' => $discountedProducts,

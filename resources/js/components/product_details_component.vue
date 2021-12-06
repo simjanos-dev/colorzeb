@@ -59,7 +59,7 @@
                         <button class="edit-product-button button blue" title="Szerkesztés"><i class="fa fa-edit"></i></button>
                     </a>
                 </div>
-                <add-to-cart-button-component :_id="_id" :_display-text="true" :_parameters="selectedParameters" ></add-to-cart-button-component>
+                <add-to-cart-button-component :_id="_id" :_display-text="true" :_parameters="selectedParameters" v-if="_active"></add-to-cart-button-component>
             </div>
         </div>
     </div>
@@ -81,6 +81,7 @@
             _parameterSettings: Array,
             _customParameters: Array,
             _isAdmin: Boolean,
+            _active: Boolean
         },
 
         data: function () {

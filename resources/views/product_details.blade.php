@@ -45,8 +45,8 @@
                 :_discount="{{ $product->discount }}"
                 :_parameter-settings="{{ $product->parameter_settings }}"
                 :_custom-parameters="{{ $customParameters }}"
-                :_is-admin="{{ $isAdmin ? 'true' : 'false' }}">
-                
+                :_is-admin="{{ $isAdmin ? 'true' : 'false' }}"
+                :_active="{{ $product->active }}">
             </product-details-component>
         
             <div id="product-instruction-box">
