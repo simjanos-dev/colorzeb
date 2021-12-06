@@ -60,7 +60,7 @@
             <div class="home-category">
                 <div class="home-category-image-box"><img src="/images/home-ajandekok.jpg"></div>
                 <div class="home-category-name">Ajándéktárgyak</div>
-                <div class="home-category-description"></div>
+                <div class="home-category-description">Válogass különböző ajándéktárgyaink között, vagy vedd fel velünk a kapcsolatot elérhetőségeink valamelyikén, ha nem találod a számodra megfelelőt.</div>
                 <a href="/products/100/20000/*/%5B4%5D/%7B%7D/0/1"><button class="button blue"><i class="fa fa-gift"></i> Ajándéktárgyak</button></a>
             </div>
         </div>

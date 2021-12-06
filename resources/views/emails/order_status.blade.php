@@ -6,33 +6,33 @@
     <div class="mail-text-box">
         <h3>Kedves {{ $order->billing_name }},</h3>
         @if ($status == 'Feldolgozásra vár')
-            #{{ $order->id }} számú rendelésed rögzítettük!
+            {{ $order->id }} számú rendelésed rögzítettük!
         @endif
 
         @if ($status == 'Megerősítve')
-            #{{ $order->id }} számú rendelésed megerősítésre került!
+            {{ $order->id }} számú rendelésed megerősítésre került!
         @endif
 
         @if ($status == 'Elutasítva')
-            #{{ $order->id }} számú rendelésed elutasításra került!
+            {{ $order->id }} számú rendelésed elutasításra került!
         @endif
 
         @if ($status == 'Fizetésre vár')
-            #{{ $order->id }} számú rendelésed fizetésre vár!<br><br>
+            {{ $order->id }} számú rendelésed fizetésre vár!<br><br>
             Hamarosan küldjük a számlát a megadott e-mail címre, melyen minden szükséges adatot megtalálsz az utaláshoz. <br><br>
             Kérlek az utalás közleményébe írd be a rendelési számodat. 
         @endif
 
         @if ($status == 'Feladva')
-            #{{ $order->id }} számú rendelésed a mai napon feladásra került!
+            {{ $order->id }} számú rendelésed a mai napon feladásra került!
         @endif
 
         @if ($status == 'Teljesítve')
-            #{{ $order->id }} számú rendelésed sikeresen teljesítve!
+            {{ $order->id }} számú rendelésed sikeresen teljesítve!
         @endif
         
         @if ($status == 'Törölve')
-            #{{ $order->id }} számú rendelésed törölve!<br>
+            {{ $order->id }} számú rendelésed törölve!<br>
             További információért vedd fel velünk a kapcsolatot elérehetőségeink valamelyikén.
         @endif
 

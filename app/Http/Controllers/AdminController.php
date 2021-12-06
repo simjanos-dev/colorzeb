@@ -56,7 +56,7 @@ class AdminController extends Controller
         $data = $request->all();
         Order::where('id', $data['id'])->update([
             'status' => $data['status'],
-            'admin_comment' => $data['admin_comment'],
+            'admin_comment' => $data['admin_comment'] == null ? '' : $data['admin_comment'],
             'payed' => $data['payed'],
         ]);
         
